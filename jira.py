@@ -97,9 +97,11 @@ def fetch_jira(**payload):
                 if word.startswith("<"):
                     browse_url = ""
 
+                output_text = f"{issue.key}: {issue.summary}\nStatus: *{issue.status}*\n{browse_url}"
+                print(output_text)
                 r = web_client.chat_postMessage(
                     channel=channel_id,
-                    text=f"{issue.key}: {issue.summary}\nStatus: *{issue.status}*\n{browse_url}",
+                    text=output_text,
                     thread_ts=thread_ts
                 )
                 print(r)
